@@ -64,7 +64,7 @@ def generate():
     else:
         color = "#00ffff"
     c.create_rectangle(0,300,300,320,fill=color)
-    c.create_text(100,10,text="Explorer's Bane v0.0.1_1: First Update",fill="#ffffff")
+    c.create_text(101,10,text="Explorer's Bane v0.0.1_2: First Update",fill="#ffffff")
     c.create_text(57,310,text="Press Ctrl-H for help",fill="#ffffff")
 
 def left(event):
