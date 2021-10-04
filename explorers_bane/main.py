@@ -64,7 +64,7 @@ def generate():
     else:
         color = "#00ffff"
     c.create_rectangle(0,300,300,320,fill=color)
-    c.create_text(95,10,text="Explorer's Bane v0.0.1: First Update",fill="#ffffff")
+    c.create_text(100,10,text="Explorer's Bane v0.0.1_1: First Update",fill="#ffffff")
     c.create_text(57,310,text="Press Ctrl-H for help",fill="#ffffff")
 
 def left(event):
@@ -211,18 +211,23 @@ def pickb(event):
             pbid = world[(x,y+1,z-3)]
 
 def pick0(event):
+    global pbid
     pbid = 0
 
 def pick1(event):
+    global pbid
     pbid = 1
 
 def pick2(event):
+    global pbid
     pbid = 2
 
 def pick3(event):
+    global pbid
     pbid = 3
 
 def pick4(event):
+    global pbid
     pbid = 4
 
 def makebc(event):
@@ -395,3 +400,4 @@ c.bind_all("<Control-h>",help_)
 while True:
     tk.update()
     generate()
+    
