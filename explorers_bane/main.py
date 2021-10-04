@@ -5,13 +5,9 @@ tk = Tk()
 c = Canvas(tk, width=300, height=320, bg="#00ffff")
 c.pack()
 
-idmap = {
-    0:("#00ff00","#00aa00","#008800"),
-    1:("#664400","#443300","#332200"),
-    2:("#555555","#444444","#333333"),
-    3:("#aa8800","#886600","#554400"),
-    4:("#00cc00","#009900","#006600"),
-    }
+a = open("idmap.txt")
+idmap = eval(a.read())
+a.close()
 
 def generate():
     c.delete("all")
@@ -68,7 +64,7 @@ def generate():
     else:
         color = "#00ffff"
     c.create_rectangle(0,300,300,320,fill=color)
-    c.create_text(60,10,text="Explorer's Bane v0.0.0",fill="#ffffff")
+    c.create_text(95,10,text="Explorer's Bane v0.0.1: First Update",fill="#ffffff")
     c.create_text(57,310,text="Press Ctrl-H for help",fill="#ffffff")
 
 def left(event):
@@ -214,6 +210,21 @@ def pickb(event):
         elif (x,y+1,z-3) in world:
             pbid = world[(x,y+1,z-3)]
 
+def pick0(event):
+    pbid = 0
+
+def pick1(event):
+    pbid = 1
+
+def pick2(event):
+    pbid = 2
+
+def pick3(event):
+    pbid = 3
+
+def pick4(event):
+    pbid = 4
+
 def makebc(event):
     global bx
     global by
@@ -320,7 +331,7 @@ def load(event):
     
 
 def help_(event):
-    i = Canvas(tk,width=300,height=170,bg="#000000")
+    i = Canvas(tk,width=300,height=190,bg="#000000")
     i.pack()
     i.create_text(150,10,text="Walk forward with W",fill="#ffffff")
     i.create_text(150,20,text="Move vertically with arrow keys",fill="#ffffff")
@@ -338,6 +349,9 @@ def help_(event):
     i.create_text(150,140,text="The nine squares in front of you are your vision",fill="#ffffff")
     i.create_text(150,150,text="They darken when they are farther away",fill="#ffffff")
     i.create_text(150,160,text="The long rectangle in front of you is the block under you",fill="#ffffff")
+    i.create_text(150,170,text="Use number keys to obtain the corresponding block id",fill="#ffffff")
+    i.create_text(150,180,text="0 is grass, 1 is dirt, 2 is stone, 3 is wood, 4 is leaves",fill="#ffffff")
+
 
 x = 0
 y = 0
@@ -367,6 +381,11 @@ c.bind_all("<KeyPress-k>",placef)
 c.bind_all("<KeyPress-i>",placeu)
 c.bind_all("<KeyPress-m>",placed)
 c.bind_all("<KeyPress-l>",pickb)
+c.bind_all("<KeyPress-0>",pick0)
+c.bind_all("<KeyPress-1>",pick1)
+c.bind_all("<KeyPress-2>",pick2)
+c.bind_all("<KeyPress-3>",pick3)
+c.bind_all("<KeyPress-4>",pick4)
 c.bind_all("<KeyPress-z>",makebc)
 c.bind_all("<KeyPress-c>",gotobc)
 c.bind_all("<Control-s>",save)
