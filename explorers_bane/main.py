@@ -5,7 +5,7 @@ import os
 import pickle
 
 tk = Tk()
-c = Canvas(tk,width=300,height=350,bg="#00ffff")
+c = Canvas(tk,width=300,height=300,bg="#00ffff")
 c.pack()
 tk.update()
 
@@ -57,7 +57,16 @@ def generate():
                         xa = (x_-x+1)*100
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(x_,y_,z_)]]["t"][back]
-                        c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
+                        if back == 2:
+                            if (x,y_,z-1) not in worldents and (x,y_,z-2) not in worldents:
+                                dogen = True
+                        elif back == 1:
+                            if (x,y_,z-1) not in worldents:
+                                dogen = True
+                        else:
+                            dogen = True
+                        if dogen:
+                            c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                     except:
                         pass
     elif yaw == 1:
@@ -69,7 +78,16 @@ def generate():
                         xa = (-(x_-z)+1)*100
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(z_,y_,x_)]]["t"][back]
-                        c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
+                        if back == 2:
+                            if (x-1,y_,z) not in worldents and (x-2,y_,z) not in worldents:
+                                dogen = True
+                        elif back == 1:
+                            if (x-1,y_,z) not in worldents:
+                                dogen = True
+                        else:
+                            dogen = True
+                        if dogen:
+                            c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                     except:
                         pass
     elif yaw == -1:
@@ -82,6 +100,16 @@ def generate():
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(z_,y_,x_)]]["t"][back]
                         c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
+                        if back == 2:
+                            if (x+1,y_,z) not in worldents and (x+2,y_,z) not in worldents:
+                                dogen = True
+                        elif back == 1:
+                            if (x+1,y_,z) not in worldents:
+                                dogen = True
+                        else:
+                            dogen = True
+                        if dogen:
+                            c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                     except:
                         pass
     elif yaw == 2:
@@ -94,6 +122,16 @@ def generate():
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(x_,y_,z_)]]["t"][back]
                         c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
+                        if back == 2:
+                            if (x,y_,z+1) not in worldents and (x,y_,z+2) not in worldents:
+                                dogen = True
+                        elif back == 1:
+                            if (x,y_,z+1) not in worldents:
+                                dogen = True
+                        else:
+                            dogen = True
+                        if dogen:
+                            c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                     except:
                         pass
     if (x,y-1,z) in world:
@@ -102,7 +140,7 @@ def generate():
         color = None
     c.create_rectangle(0,300,300,320,fill=color)
     c.create_text(57,310,text="Press Ctrl-H for help",fill="#ffffff")
-    c.create_rectangle(0,320,300,350,fill="#ffffff")
+    c.create_rectangle(0,320,300,380,fill="#ffffff")
     c.create_rectangle(0,320,30,350,fill="#00ff00")
     c.create_rectangle(30,320,60,350,fill="#664400")
     c.create_rectangle(60,320,90,350,fill="#555555")
@@ -115,6 +153,8 @@ def generate():
     c.create_rectangle(212,320,228,336,fill="#aa8800")
     c.create_rectangle(240,320,255,335,fill="#ff3300")
     c.create_rectangle(240,335,270,350,fill="#ff3300")
+    c.create_rectangle(270,320,300,350,fill="#00cc00")
+    c.create_rectangle(0,350,30,380,fill="#cccc66")
     c.create_text(15,335,text=inventory[0])
     c.create_text(45,335,text=inventory[1])
     c.create_text(75,335,text=inventory[2])
@@ -123,7 +163,9 @@ def generate():
     c.create_text(165,335,text=inventory[5],fill="#ffffff")
     c.create_text(190,328,text=inventory[6],fill="#ffffff")
     c.create_text(220,328,text=inventory[7])
-    c.create_text(248,343,text=inventory[8])
+    c.create_text(255,343,text=inventory[8])
+    c.create_text(285,335,text=inventory[9])
+    c.create_text(15,365,text=inventory[10])
     c.create_rectangle(228,8,292,24,fill="#ffffff")
     c.create_rectangle(228,8,(health/4)+228,24,fill="#ff0000")
 
@@ -264,7 +306,7 @@ def upd_ent():
 def rem_ent():
     old_worldents = deepcopy(worldents)
     for ent in old_worldents:
-        if worldents[ent]["age"] == 2048:
+        if worldents[ent]["age"] == 1024:
             del worldents[ent]
 
 def ent_atk():
@@ -307,28 +349,40 @@ def right(event):
 
 def up(event):
     global y
-    if (x,y+2,z) not in world:
+    if spc:
+        y += 1
+    elif (x,y+2,z) not in world or not idmap[world[(x,y+2,z)]]["m"]:
         y += 1
 
 def down(event):
     global y
-    if (x,y-1,z) not in world:
+    if spc:
+        y -= 1
+    elif (x,y-1,z) not in world or not idmap[world[(x,y-1,z)]]["m"]:
         y -= 1
 
 def forth(event):
     global x
     global z
     if yaw == 0:
-        if (x,y,z+1) not in world or not idmap[world[(x,y,z+1)]]["m"]:
+        if spc:
+            z += 1
+        elif (x,y,z+1) not in world or not idmap[world[(x,y,z+1)]]["m"]:
             z += 1
     elif yaw == 1:
-        if (x+1,y,z) not in world or not idmap[world[(x+1,y,z)]]["m"]:
+        if spc:
+            x += 1
+        elif (x+1,y,z) not in world or not idmap[world[(x+1,y,z)]]["m"]:
             x += 1
     elif yaw == -1:
-        if (x-1,y,z) not in world or not idmap[world[(x-1,y,z)]]["m"]:
+        if spc:
+            x -= 1
+        elif (x-1,y,z) not in world or not idmap[world[(x-1,y,z)]]["m"]:
             x -= 1
     elif yaw == 2:
-        if (x,y,z-1) not in world or not idmap[world[(x,y,z-1)]]["m"]:
+        if spc:
+            z -= 1
+        elif (x,y,z-1) not in world or not idmap[world[(x,y,z-1)]]["m"]:
             z -= 1
 
 def minef(event):
@@ -522,21 +576,22 @@ def placelu(event):
 def placeld(event):
     global inventory
     global world
+    dosub = False
     if inventory[idmap[pbid]["in"]] > 0:
         if yaw == 0:
-            if (x,y+1,z+1) in world and (x,y,z+1) not in world:
+            if ((x,y+1,z+1) in world or (x,y-1,z+1) in world) and (x,y,z+1) not in world:
                 world[(x,y,z+1)] = pbid
                 dosub = True
         elif yaw == 1:
-            if (x+1,y+1,z) in world and (x+1,y,z) not in world:
+            if ((x+1,y+1,z) in world or (x+1,y-1,z) in world) and (x,y,z+1) not in world:
                 world[(x+1,y,z)] = pbid
                 dosub = True
         elif yaw == -1:
-            if (x-1,y+1,z) in world and (x-1,y,z) not in world:
+            if ((x-1,y+1,z) in world or (x-1,y-1,z) in world) and (x,y,z+1) not in world:
                 world[(x-1,y,z)] = pbid
                 dosub = True
         elif yaw == 2:
-            if (x,y+1,z-1) in world and (x,y,z-1) not in world:
+            if ((x,y+1,z-1) in world or (x,y-1,z-1) in world) and (x,y,z+1) not in world:
                 world[(x,y,z-1)] = pbid
                 dosub = True
         if dosub:
@@ -638,6 +693,14 @@ def pick3(event):
 def pick5(event):
     global pbid
     pbid = 6
+
+def pick9(event):
+    global pbid
+    pbid = 4
+
+def pick11(event):
+    global pbid
+    pbid = 7
 
 def makebc(event):
     global bx
@@ -790,6 +853,12 @@ def save(event):
     a = open("save/worldents.txt","w+b")
     a.write(pickle.dumps(world))
     a.close()
+    a = open("save/spc.txt","w+b")
+    a.write(pickle.dumps(world))
+    a.close()
+    a = open("save/mode.txt","w+b")
+    a.write(pickle.dumps(world))
+    a.close()
 
 def load(event):
     global x
@@ -806,6 +875,8 @@ def load(event):
     global health
     global inventory
     global worldents
+    global spc
+    global mode
     a = open("save/x.txt","rb")
     b = a.read()
     x = pickle.loads(b)
@@ -862,37 +933,46 @@ def load(event):
     b = a.read()
     worldents = pickle.loads(b)
     a.close()
+    a = open("save/spc.txt","rb")
+    b = a.read()
+    spc = pickle.loads(b)
+    a.close()
+    a = open("save/mode.txt","rb")
+    b = a.read()
+    mode = pickle.loads(b)
+    a.close()
 
 def help_(event):
     hwin = Tk()
-    i = Canvas(hwin,width=350,height=240,bg="#000000")
+    i = Canvas(hwin,width=390,height=250,bg="#000000")
     i.pack()
-    i.create_text(175,10,text="Walk forward with W",fill="#ffffff")
-    i.create_text(175,20,text="Move vertically with arrow keys",fill="#ffffff")
-    i.create_text(175,30,text="Turn with A/D",fill="#ffffff")
-    i.create_text(175,40,text="Mine with G",fill="#ffffff")
-    i.create_text(175,50,text="Mine up/down with T/B",fill="#ffffff")
-    i.create_text(175,60,text="Place with K",fill="#ffffff")
-    i.create_text(175,70,text="Place up/down with I/M",fill="#ffffff")
-    i.create_text(175,80,text="Pick voxel with L",fill="#ffffff")
-    i.create_text(175,90,text="Make beacon with Z",fill="#ffffff")
-    i.create_text(175,100,text="Go to beacon with C",fill="#ffffff")
-    i.create_text(175,110,text="Save game with Ctrl-S",fill="#ffffff")
-    i.create_text(175,120,text="Load game with Ctrl-O",fill="#ffffff")
-    i.create_text(175,130,text="Craft item with E",fill="#ffffff")
-    i.create_text(175,140,text="Eat with Q",fill="#ffffff")
-    i.create_text(175,150,text="Kill entity with space",fill="#ffffff")
-    i.create_text(175,160,text="Pull up help section with Ctrl-H",fill="#ffffff")
-    i.create_text(175,170,text="The nine squares in front of you are your vision",fill="#ffffff")
-    i.create_text(175,180,text="They darken when they are farther away",fill="#ffffff")
-    i.create_text(175,190,text="The long rectangle in front of you is the block under you",fill="#ffffff")
-    i.create_text(175,200,text="Use number keys to obtain the corresponding voxel id",fill="#ffffff")
-    i.create_text(175,210,text="0 is grass, 1 is dirt, 2 is stone, 3 is wood, 5 is rocks",fill="#ffffff")
-    i.create_text(175,220,text="Mine the voxel below in front of you with V",fill="#ffffff")
-    i.create_text(175,230,text="Place the voxel up/down/left/right in front of you with U/N/J/O",fill="#ffffff")
+    i.create_text(195,10,text="Walk forward with W",fill="#ffffff")
+    i.create_text(195,20,text="Move vertically with arrow keys",fill="#ffffff")
+    i.create_text(195,30,text="Turn with A/D",fill="#ffffff")
+    i.create_text(195,40,text="Mine with G",fill="#ffffff")
+    i.create_text(195,50,text="Mine up/down with T/B",fill="#ffffff")
+    i.create_text(195,60,text="Place with K",fill="#ffffff")
+    i.create_text(195,70,text="Place up/down with I/M",fill="#ffffff")
+    i.create_text(195,80,text="Pick voxel with L",fill="#ffffff")
+    i.create_text(195,90,text="Make beacon with Z",fill="#ffffff")
+    i.create_text(195,100,text="Go to beacon with C",fill="#ffffff")
+    i.create_text(195,110,text="Save game with Ctrl-S",fill="#ffffff")
+    i.create_text(195,120,text="Load game with Ctrl-O",fill="#ffffff")
+    i.create_text(195,130,text="Craft item with E",fill="#ffffff")
+    i.create_text(195,140,text="While crafting, scroll with arrow keys",fill="#ffffff")
+    i.create_text(195,150,text="Eat with Q",fill="#ffffff")
+    i.create_text(195,160,text="Kill entity with space",fill="#ffffff")
+    i.create_text(195,170,text="Pull up help section with Ctrl-H",fill="#ffffff")
+    i.create_text(195,180,text="The nine squares in front of you are your vision",fill="#ffffff")
+    i.create_text(195,195,text="They darken when they are farther away",fill="#ffffff")
+    i.create_text(195,200,text="The long rectangle in front of you is the block under you",fill="#ffffff")
+    i.create_text(195,210,text="Use number keys to obtain the corresponding voxel",fill="#ffffff")
+    i.create_text(195,220,text="0 is grass, 1 is dirt, 2 is stone, 3 is wood, 4 is rocks, 5 is leaves, 6 is sand",fill="#ffffff")
+    i.create_text(195,230,text="Mine the voxel below in front of you with V",fill="#ffffff")
+    i.create_text(195,240,text="Place the voxel up/down/left/right in front of you with U/N/J/O",fill="#ffffff")
     c.unbind_all("<Control-h>")
 
-def start():
+def start(mode=0):
     global world
     global x
     global y
@@ -907,8 +987,16 @@ def start():
     global health
     global worldents
     global inventory
+    global spc
+
+    c.config(height=380)
     
+    spc = mode == 2
+    mode = bool(mode)
+
     play.destroy()
+    play_s.destroy()
+    play_sp.destroy()
     
     x = 0
     y = 0
@@ -922,15 +1010,17 @@ def start():
     pbid = 1
     health = 256
     inventory = {
-        0:0,
-        1:0,
-        2:0,
-        3:0,
-        4:0,
-        5:0,
-        6:0,
-        7:0,
-        8:0
+        0:100*mode,
+        1:100*mode,
+        2:100*mode,
+        3:100*mode,
+        4:100*mode,
+        5:100*mode,
+        6:100*mode,
+        7:100*mode,
+        8:100*mode,
+        9:100*mode,
+        10:100*mode
         }
     worldents = {}
 
@@ -974,6 +1064,9 @@ def start():
             world[(x_-1,-1,z_)] = 5
             world[(x_,-1,z_+1)] = 5
             world[(x_,-1,z_-1)] = 5
+            bfs = [(x_+2,-1,z_),(x_+1,-1,z_+1),(x_,-1,z_+2),(x_-1,-1,z_+1),(x_-2,-1,z_),(x_-1,-1,z_-1),(x_,-1,z_-2),(x_+1,-1,z_-1)]
+            for vox in bfs:
+                world[vox] = 7
 
     c.bind_all("<KeyPress-a>",left)
     c.bind_all("<KeyPress-d>",right)
@@ -996,7 +1089,9 @@ def start():
     c.bind_all("<KeyPress-1>",pick1)
     c.bind_all("<KeyPress-2>",pick2)
     c.bind_all("<KeyPress-3>",pick3)
-    c.bind_all("<KeyPress-5>",pick5)
+    c.bind_all("<KeyPress-4>",pick5)
+    c.bind_all("<KeyPress-5>",pick9)
+    c.bind_all("<KeyPress-6>",pick11)
     c.bind_all("<KeyPress-z>",makebc)
     c.bind_all("<KeyPress-c>",gotobc)
     c.bind_all("<KeyPress-e>",craftmenu)
@@ -1007,15 +1102,17 @@ def start():
     c.bind_all("<Control-h>",help_)
 
     while True:
-        tk.update()
-        generate()
+        tk.geometry("304x384")
         gen_ent()
+        generate()
         spawn_ent()
         upd_ent()
         rem_ent()
-        ent_atk()
-        fall()
-        if y < -25 or x > 31 or x < -32 or z > 31 or z < -32 or health == 0:
+        if not mode:
+            ent_atk()
+            fall()
+        tk.update()
+        if not mode and (y < -25 or x > 31 or x < -32 or z > 31 or z < -32 or health == 0):
             world = {}
             c.unbind_all("<KeyPress-a>")
             c.unbind_all("<KeyPress-d>")
@@ -1038,7 +1135,9 @@ def start():
             c.unbind_all("<KeyPress-1>")
             c.unbind_all("<KeyPress-2>")
             c.unbind_all("<KeyPress-3>")
+            c.unbind_all("<KeyPress-4>")
             c.unbind_all("<KeyPress-5>")
+            c.unbind_all("<KeyPress-6>")
             c.unbind_all("<KeyPress-z>")
             c.unbind_all("<KeyPress-c>")
             c.unbind_all("<KeyPress-e>")
@@ -1050,12 +1149,24 @@ def start():
             c.create_text(150,150,text="You Died",font=("Default",20),fill="#ff0000")
             break
 
+def sb():
+    start(1)
+
+def sp():
+    start(2)
+
 c.delete("all")
 logo = PhotoImage(file="logo.png")
 c.create_image(150,62,image=logo)
-play = Button(tk,text="Play!",command=start,width=10,bg="#aa8800")
+play = Button(tk,text="Play!",command=start,width=12,bg="#aa8800")
 play.place(x=150,y=150,anchor=CENTER)
-c.create_text(104,330,text="Explorer's Bane v0.1.0: Survival Update",fill="#ffffff")
+play_s = Button(tk,text="Sandbox Mode",command=sb,width=12,bg="#aa8800")
+play_s.place(x=150,y=180,anchor=CENTER)
+play_sp = Button(tk,text="Spectate Mode",command=sp,width=12,bg="#aa8800")
+play_sp.place(x=150,y=210,anchor=CENTER)
+c.create_text(107,330,text="Explorer's Bane v0.2.0: Sandbox Update",fill="#ffffff")
 c.create_text(76,340,text="Created by UnbihexiumFan",fill="#ffffff")
 
-tk.mainloop()
+while True:
+    tk.geometry("304x304")
+    tk.update()
