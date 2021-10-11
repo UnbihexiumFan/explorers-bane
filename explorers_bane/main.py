@@ -99,7 +99,6 @@ def generate():
                         xa = (x_-z+1)*100
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(z_,y_,x_)]]["t"][back]
-                        c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                         if back == 2:
                             if (x+1,y_,z) not in worldents and (x+2,y_,z) not in worldents:
                                 dogen = True
@@ -121,7 +120,6 @@ def generate():
                         xa = (-(x_-x)+1)*100
                         ya = (-(y_-y)+2)*100
                         color = idmap[world[(x_,y_,z_)]]["t"][back]
-                        c.create_rectangle(xa,ya,xa+100,ya+100,fill=color)
                         if back == 2:
                             if (x,y_,z+1) not in worldents and (x,y_,z+2) not in worldents:
                                 dogen = True
@@ -1164,8 +1162,8 @@ play_s = Button(tk,text="Sandbox Mode",command=sb,width=12,bg="#aa8800")
 play_s.place(x=150,y=180,anchor=CENTER)
 play_sp = Button(tk,text="Spectate Mode",command=sp,width=12,bg="#aa8800")
 play_sp.place(x=150,y=210,anchor=CENTER)
-c.create_text(107,330,text="Explorer's Bane v0.2.0: Sandbox Update",fill="#ffffff")
-c.create_text(76,340,text="Created by UnbihexiumFan",fill="#ffffff")
+c.create_text(112,280,text="Explorer's Bane v0.2.0_1: Sandbox Update",fill="#ffffff")
+c.create_text(76,290,text="Created by UnbihexiumFan",fill="#ffffff")
 
 while True:
     tk.geometry("304x304")
