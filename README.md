@@ -1,8 +1,8 @@
 # explorers-bane
 
-Explorer's Bane is a 3D voxel game developed by me, UnbihexiumFan.
+Explorer's Bane is a 3D voxel game developed by me, UnbihexiumFan. Not to be confused with _The Explorer's Bane_
 
-Nobody ever said it had good graphics. It is probably a bad 3D video game.
+Nobody ever said it had good graphics.
 
 To access the game, go to explorers_bane/main.py.
 
