@@ -10,4 +10,4 @@ It has many different gameplay styles.
 
 # Requirements
 
-Explorer's Bane requires you to have Python installed. For versions v0.2.0_1 and below, you need Python 3.9.0. Please please PLEASE put the folder `explorers_bane` into `C:\Program Files` . There are modifications to versions v0.2.0_1 and below that are compatable with later versions that end in \_999.
+Explorer's Bane requires you to have Python installed. For versions v0.2.0_1 and below, you need Python 3.9.0. Please please PLEASE put the folder `explorers_bane` into `C:\Program Files` . There are modifications to versions v0.2.0_1 and below that are compatable with later versions that end in \_399.
