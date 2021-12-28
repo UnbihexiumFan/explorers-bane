@@ -2,7 +2,7 @@
 
 Explorer's Bane is a 3D voxel game developed by me, UnbihexiumFan.
 
-To access the game, go to explorers_bane/main.py.
+To access the game, go to `explorers_bane/main.py`.
 
 See the [_wiki_](https://github.com/UnbihexiumFan/explorers-bane/wiki) for more information.
 
