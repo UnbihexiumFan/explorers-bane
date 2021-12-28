@@ -1,0 +1,4 @@
+{
+    6:"cgui.create_rectangle(18,0,28,30,fill=\"#886600\")\ncgui.create_rectangle(2,0,18,16,fill=\"#444444\")",
+    7:"cgui.create_rectangle(18,0,28,30,fill=\"#886600\")\ncgui.create_rectangle(2,0,18,16,fill=\"#aa8800\")"
+    }
