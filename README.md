@@ -1,7 +1,7 @@
-[Warning](https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#!WARNING!)
-[Info](https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#Info)
-[Requirements](https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#Requirements_and_Playing_Procedures)
-[News](https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#News)
+[Warning](https://github.com/UnbihexiumFan/explorers-bane/main/README.md#!WARNING!)
+[Info](https://github.com/UnbihexiumFan/explorers-bane/main/README.md#Info)
+[Requirements](https://github.com/UnbihexiumFan/explorers-bane/main/README.md#Requirements_and_Playing_Procedures)
+[News](https://github.com/UnbihexiumFan/explorers-bane/main/README.md#News)
 
 # !WARNING!
 
