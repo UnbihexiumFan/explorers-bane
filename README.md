@@ -1,8 +1,13 @@
+[Warning]https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#!WARNING!
+[Info]https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#Info
+[Requirements]https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#Requirements_and_Playing_Procedures
+[News]https://github.com/UnbihexiumFan/explorers-bane/edit/main/README.md#News
+
 # !WARNING!
 
 Look at "Requirements and Playing Procedures" if you want to download.
 
-# Explorer's Bane
+# Info
 
 Explorer's Bane is a 3D voxel game developed by UnbihexiumFan. It has many different gameplay styles.
 
@@ -18,4 +23,4 @@ To play versions after v0.2.0_1, you also must click on the file `setup.py` to s
 
 ## December 29th
 
-Explorer's Bane Alpha is out!
+Explorer's Bane Alpha is out! After 89 days the alpha version of Explorer's Bane is out! Explorer's Bane has come a long
