@@ -209,7 +209,7 @@ def generate():
     c.create_rectangle(228,8,(health/4)+228,24,fill="#ff0000")
 
 def gen_ent():
-    c.delete(all)
+    c.delete("all")
     if yaw == 0:
         for z_ in range(z+3,z,-1):
             for x_ in range(x-1,x+2):
