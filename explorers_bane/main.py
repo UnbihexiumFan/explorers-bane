@@ -1,3 +1,5 @@
+path = "D:/explorers-bane-main"
+
 from copy import deepcopy
 from tkinter import *
 from random import randint
@@ -496,7 +498,7 @@ def mineu(event):
             inventory[idmap[bid]["io"]] += 1
             del world[coords]
         elif inventory[idmap[bid]["i"]] > 0:
-            inventory[idmap[bid]] += 1
+            inventory[idmap[bid]["io"]] += 1
             del world[coords]
 
 def mined(event):
@@ -1200,7 +1202,7 @@ play_sp = Button(tk,text="Spectate Mode",command=sp,width=12,bg="#aa8800")
 play_sp.place(x=150,y=210,anchor=CENTER)
 cred = Button(tk,text="Credits",command=credits_,width=12,bg="#aa8800")
 cred.place(x=150,y=240,anchor=CENTER)
-c.create_text(127,280,text="Explorer's Bane v1.0.0-a2: Nighty Night Update",fill="#ffffff")
+c.create_text(132,280,text="Explorer's Bane v1.0.0_1-a2: Nighty Night Update",fill="#ffffff")
 c.create_text(76,290,text="Created by UnbihexiumFan",fill="#ffffff")
 
 while True:
