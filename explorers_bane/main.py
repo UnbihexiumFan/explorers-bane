@@ -1,5 +1,3 @@
-path = "D:/v1_0_0"
-
 from copy import deepcopy
 from tkinter import *
 from random import randint
