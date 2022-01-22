@@ -47,7 +47,6 @@ a.close()
 cmop = False
 
 def generate():
-    c.delete("all")
     if yaw == 0:
         for z_ in range(z+4,z,-1):
             for x_ in range(x-1,x+2):
@@ -210,6 +209,7 @@ def generate():
     c.create_rectangle(228,8,(health/4)+228,24,fill="#ff0000")
 
 def gen_ent():
+    c.delete(all)
     if yaw == 0:
         for z_ in range(z+3,z,-1):
             for x_ in range(x-1,x+2):
@@ -304,11 +304,6 @@ def spawn_ent():
                             "yaw":randint(-1,2),
                             "age":0
                             }
-    worldents[(0,0,-1)] = {
-        "id":0,
-        "yaw":randint(-1,2),
-        "age":0
-        }
 
 def upd_ent():
     old_worldents = deepcopy(worldents)
