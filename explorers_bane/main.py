@@ -1,5 +1,3 @@
-path = "D:/explorers-bane-main"
-
 from copy import deepcopy
 from tkinter import *
 from random import randint
