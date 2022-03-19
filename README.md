@@ -17,3 +17,7 @@ To play version v0.2.0_1-399 and later, you also must click on the file `setup.p
 # Current Status
 
 Sadly, the creator, UnbihexiumFan, is currently in a period of procrastination, meaning the progress on Explorer's Bane may be a little slow.
+
+# Other Stuff
+
+SLAVA UKRAINI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
