@@ -20,4 +20,5 @@ Sadly, the creator, UnbihexiumFan, is currently in a period of procrastination, 
 
 # Other Stuff
 
-SLAVA UKRAINI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+SLAVA UKRAINA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+СЛАВА УКРАЇНА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
